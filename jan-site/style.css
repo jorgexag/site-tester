@@ -8,9 +8,9 @@
       --bg-card-hover:    hsl(210, 16%, 16%);
       --border:           hsl(210, 14%, 20%);
 
-      --accent:           hsl(185, 70%, 45%);
-      --accent-light:     hsl(185, 70%, 55%);
-      --accent-dim:       hsl(185, 40%, 18%);
+      --accent:           hsl(47, 100%, 45%);
+      --accent-light:     hsl(47, 100%, 65%);
+      --accent-dim:       hsl(47, 100%, 18%);
 
       --text:             hsl(0, 0%, 96%);
       --text-muted:       hsl(210, 10%, 60%);
@@ -20,22 +20,25 @@
       --overlay-opacity:  0.55;
       --gradient-color:   hsl(210, 30%, 5%);
 
-      --btn-bg:           hsl(185, 70%, 45%);
+      --btn-bg:           hsl(47, 100%, 45%);
       --btn-text:         hsl(210, 30%, 6%);
-      --btn-hover:        hsl(185, 70%, 55%);
+      --btn-hover:        hsl(47, 100%, 65%);
 
-      --pricing-featured: hsl(185, 60%, 12%);
-      --pricing-border:   hsl(185, 70%, 35%);
+      --pricing-featured: hsl(47, 100%, 12%);
+      --pricing-border:   hsl(47, 100%, 35%);
 
       --input-bg:         hsl(210, 16%, 13%);
       --input-border:     hsl(210, 14%, 22%);
-      --input-focus:      hsl(185, 70%, 45%);
+      --input-focus:      hsl(47, 100%, 45%);
 
       /* --font-display: 'Fraunces', serif;
       --font-body:    'Mulish', sans-serif; */
 
-      --font-display: "Cinzel", serif;
-      --font-body:    "Nunito", sans-serif;
+      /* --font-display: "Cinzel", serif;
+      --font-body:    "Nunito", sans-serif; */
+      
+      --font-display: "Forum", serif;
+      --font-body:    "Montserrat", sans-serif;
 
 
       --section-pad: 5rem 1.5rem;
