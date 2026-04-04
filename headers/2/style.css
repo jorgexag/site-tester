@@ -1,0 +1,229 @@
+/* ============================
+   HERO 2 – LOCAL BUSINESS
+   ============================ */
+
+/* === COLOR TOKENS (tweak these) === */
+:root {
+  --bg:           hsl(36, 33%, 96%);
+  --surface:      hsl(36, 30%, 90%);
+  --accent:       hsl(14, 80%, 48%);
+  --accent-light: hsl(14, 80%, 93%);
+  --text:         hsl(20, 15%, 14%);
+  --text-muted:   hsl(20, 10%, 45%);
+  --plate-bg:     hsl(36, 40%, 88%);
+  --nav-cta-bg:   hsl(14, 80%, 48%);
+  --nav-cta-text: hsl(0, 0%, 100%);
+  --tag-bg:       hsl(0, 0%, 100%);
+  --tag-shadow:   hsl(20, 20%, 75%);
+  --border:       hsl(30, 20%, 82%);
+
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'Jost', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100dvh;
+}
+
+/* === HERO WRAPPER === */
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.5rem 2.5rem;
+}
+
+/* === HEADER / NAV === */
+.hero__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.nav a:not(.nav__cta) { color: var(--text-muted); }
+.nav a:not(.nav__cta):hover { color: var(--text); }
+
+.nav__cta {
+  background: var(--nav-cta-bg);
+  color: var(--nav-cta-text);
+  padding: 0.45em 1em;
+  border-radius: 100px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.nav__cta:hover { opacity: 0.85; }
+
+/* === BODY LAYOUT === */
+.hero__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* === TEXT BLOCK === */
+.hero__text { animation: fadeUp 0.55s ease both; }
+
+.hero__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 12vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+.hero__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.hero__desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 34ch;
+  margin-bottom: 1.75rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.75em 1.6em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn--fill {
+  background: var(--accent);
+  color: #fff;
+}
+.btn--fill:hover { opacity: 0.88; }
+
+.btn--line {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn--line:hover { border-color: var(--text); }
+
+.hero__info {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* === VISUAL BLOCK === */
+.hero__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: fadeUp 0.55s 0.1s ease both;
+}
+
+.hero__plate {
+  width: clamp(180px, 55vw, 260px);
+  height: clamp(180px, 55vw, 260px);
+  border-radius: 50%;
+  background: var(--plate-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(5rem, 18vw, 8rem);
+  box-shadow:
+    0 8px 32px hsl(20, 30%, 60%, 0.25),
+    0 2px 6px hsl(20, 30%, 60%, 0.15);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Floating tags */
+.tag {
+  position: absolute;
+  background: var(--tag-bg);
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.5em 0.85em;
+  box-shadow: 0 4px 14px hsl(20, 20%, 60%, 0.2);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.tag--1 {
+  top: 10%;
+  left: 5%;
+  animation: float 5s 0.5s ease-in-out infinite;
+}
+
+.tag--2 {
+  bottom: 8%;
+  right: 4%;
+  animation: float 4.5s 1s ease-in-out infinite;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* === RESPONSIVE === */
+@media (min-width: 640px) {
+  .hero__body {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .hero__text { flex: 1; }
+  .hero__visual {
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
