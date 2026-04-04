@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J & K Mobile Detailing – Full Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,800;1,400&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet"/> -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================================
+       NAV
+       ================================ -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">J & K Mobile Detailing</a>
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact" class="nav__cta">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="drawer">
+    <a href="#about"     onclick="closeDrawer()">About</a>
+    <a href="#features"  onclick="closeDrawer()">Services</a>
+    <a href="#pricing"   onclick="closeDrawer()">Pricing</a>
+    <a href="#contact"   onclick="closeDrawer()">Contact</a>
+  </div>
+
+  <!-- ================================
+       HERO
+       ================================ -->
+  <section class="hero" id="home">
+    <img
+      class="hero__bg"
+      src="https://images.unsplash.com/photo-1694678505383-676d78ea3b96?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+    />
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">August 12 – 20 · Nepal</p>
+      <h1 class="hero__title">Above the<br><em>Clouds.</em></h1>
+      <p class="hero__desc">Join our guided 8-day trek through the world's most breathtaking mountain trails. All skill levels welcome.</p>
+      <a href="#contact" class="btn">Reserve Your Spot</a>
+      <p class="hero__note">Only 12 spots remaining</p>
+    </div>
+
+    <div class="hero__scroll" id="scrollHint" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ================================
+       ABOUT
+       ================================ -->
+  <section class="about" id="about">
+    <div class="about__inner">
+      <div class="reveal">
+        <span class="section-label">Who we are</span>
+        <h2 class="section-title">Adventure<br><em>redefined.</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="about__body">
+        <div class="about__text reveal">
+          <p class="section-sub">We are a team of seasoned mountaineers and outdoor guides passionate about sharing the raw, unfiltered beauty of the Himalayas. Every expedition is carefully curated for safety, wonder, and transformation.</p>
+          <br>
+          <p class="section-sub">From your first step at base camp to the summit push, we handle every detail — so you can focus on the experience of a lifetime.</p>
+          <br>
+          <a href="#features" class="btn btn--ghost" style="font-size:0.82rem; padding: 0.75em 1.75em;">Our Services</a>
+        </div>
+        <div class="about__stat-grid reveal">
+          <div class="about__stat">
+            <div class="about__stat-num">12+</div>
+            <div class="about__stat-label">Years guiding</div>
+          </div>
+          <div class="about__stat">
+            <div class="about__stat-num">340</div>
+            <div class="about__stat-label">Expeditions</div>
+          </div>
+          <div class="about__stat">
+            <div class="about__stat-num">98%</div>
+            <div class="about__stat-label">Safety record</div>
+          </div>
+          <div class="about__stat">
+            <div class="about__stat-num">4.9★</div>
+            <div class="about__stat-label">Avg. rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FEATURES / SERVICES
+       ================================ -->
+  <section class="features" id="features">
+    <div class="features__header reveal">
+      <span class="section-label">What we offer</span>
+      <h2 class="section-title">Built for<br><em>every adventurer.</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">From day hikes to summit attempts, our services are designed to meet you wherever you are.</p>
+    </div>
+    <div class="features__grid">
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🏔️</div>
+        <h3 class="feature-card__title">Summit Expeditions</h3>
+        <p class="feature-card__desc">Full guided ascents with certified Sherpa support, O₂ equipment, and daily health monitoring.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🥾</div>
+        <h3 class="feature-card__title">Trek Packages</h3>
+        <p class="feature-card__desc">Multi-day trail packages through classic routes like Annapurna Circuit and Everest Base Camp.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🏕️</div>
+        <h3 class="feature-card__title">Camp & Lodging</h3>
+        <p class="feature-card__desc">Curated teahouse stays and luxury base camp setups with hot meals and proper rest facilities.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🎒</div>
+        <h3 class="feature-card__title">Gear Rental</h3>
+        <p class="feature-card__desc">Full kit available — crampons, down suits, sleeping bags, trekking poles. Travel light, gear up here.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🩺</div>
+        <h3 class="feature-card__title">Medical Support</h3>
+        <p class="feature-card__desc">On-trail medic, altitude sickness protocols, and satellite emergency communication on every trip.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">📸</div>
+        <h3 class="feature-card__title">Photo & Film</h3>
+        <p class="feature-card__desc">Add a dedicated photographer to your expedition. Come home with footage you'll keep forever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PRICING
+       ================================ -->
+  <section class="pricing" id="pricing">
+    <div class="pricing__header reveal">
+      <span class="section-label">Simple pricing</span>
+      <h2 class="section-title">Choose your<br><em>adventure.</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">All packages include permits, insurance, and 24/7 guide support. No hidden fees.</p>
+    </div>
+    <div class="pricing__grid">
+
+      <!-- Starter -->
+      <div class="pricing-card reveal">
+        <div class="pricing-card__tier">Base Camp</div>
+        <div class="pricing-card__price"><sup>$</sup>1,200</div>
+        <div class="pricing-card__period">per person · 4 days</div>
+        <div class="pricing-card__divider"></div>
+        <ul class="pricing-card__features">
+          <li>Guided day treks</li>
+          <li>Teahouse accommodation</li>
+          <li>Permits & insurance</li>
+          <li>Airport transfer</li>
+          <li class="off">Gear rental</li>
+          <li class="off">Photo package</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Get Started</a>
+      </div>
+
+      <!-- Featured -->
+      <div class="pricing-card pricing-card--featured reveal">
+        <div class="pricing-card__badge">Most Popular</div>
+        <div class="pricing-card__tier">Summit Trek</div>
+        <div class="pricing-card__price"><sup>$</sup>2,800</div>
+        <div class="pricing-card__period">per person · 8 days</div>
+        <div class="pricing-card__divider"></div>
+        <ul class="pricing-card__features">
+          <li>All Base Camp features</li>
+          <li>EBC summit attempt</li>
+          <li>Full gear rental kit</li>
+          <li>Sherpa 1-on-1 support</li>
+          <li>On-trail medical staff</li>
+          <li class="off">Photo package</li>
+        </ul>
+        <a href="#contact" class="btn">Book Now</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card reveal">
+        <div class="pricing-card__tier">Expedition Pro</div>
+        <div class="pricing-card__price"><sup>$</sup>5,500</div>
+        <div class="pricing-card__period">per person · 14 days</div>
+        <div class="pricing-card__divider"></div>
+        <ul class="pricing-card__features">
+          <li>All Summit Trek features</li>
+          <li>Lhotse / Ama Dablam route</li>
+          <li>Private base camp setup</li>
+          <li>Satellite comms device</li>
+          <li>Dedicated photographer</li>
+          <li>Post-trip video edit</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Get Started</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       CONTACT
+       ================================ -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <div class="reveal">
+        <span class="section-label">Get in touch</span>
+        <h2 class="section-title">Let's plan your<br><em>journey.</em></h2>
+        <div class="divider"></div>
+        <p class="section-sub">Fill out the form and our team will reach out within 24 hours.</p>
+      </div>
+
+      <form class="contact__form reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" placeholder="Alex" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" placeholder="Honnold" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="package">Interested in</label>
+          <select id="package">
+            <option value="">Select a package…</option>
+            <option>Base Camp – $1,200</option>
+            <option>Summit Trek – $2,800</option>
+            <option>Expedition Pro – $5,500</option>
+            <option>Custom / not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us about your experience level, travel dates, or any questions…"></textarea>
+        </div>
+        <button type="submit" class="btn contact__submit">Send Message</button>
+      </form>
+
+      <div class="form-success reveal" id="formSuccess">
+        <div class="form-success__icon">✅</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem;">Message sent!</h3>
+        <p>We'll be in touch within 24 hours. Get ready for the adventure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FOOTER
+       ================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="footer__logo">J & K Mobile Detailing</span>
+          <p>Guided expeditions to the top of the world. Est. 2012.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__links-group">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#about">About us</a></li>
+              <li><a href="#features">Services</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__links-group">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Refund Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 J & K Mobile Detailing Expeditions. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>

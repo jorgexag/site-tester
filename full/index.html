@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Everest – Full Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,800;1,400&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ================================
+       COLOR TOKENS — tweak here only
+       ================================ */
+    :root {
+      --bg:               hsl(210, 22%, 7%);
+      --bg-section:       hsl(210, 18%, 10%);
+      --bg-card:          hsl(210, 16%, 13%);
+      --bg-card-hover:    hsl(210, 16%, 16%);
+      --border:           hsl(210, 14%, 20%);
+
+      --accent:           hsl(185, 70%, 45%);
+      --accent-light:     hsl(185, 70%, 55%);
+      --accent-dim:       hsl(185, 40%, 18%);
+
+      --text:             hsl(0, 0%, 96%);
+      --text-muted:       hsl(210, 10%, 60%);
+      --text-faint:       hsl(210, 10%, 40%);
+
+      --overlay-color:    hsl(210, 30%, 6%);
+      --overlay-opacity:  0.55;
+      --gradient-color:   hsl(210, 30%, 5%);
+
+      --btn-bg:           hsl(185, 70%, 45%);
+      --btn-text:         hsl(210, 30%, 6%);
+      --btn-hover:        hsl(185, 70%, 55%);
+
+      --pricing-featured: hsl(185, 60%, 12%);
+      --pricing-border:   hsl(185, 70%, 35%);
+
+      --input-bg:         hsl(210, 16%, 13%);
+      --input-border:     hsl(210, 14%, 22%);
+      --input-focus:      hsl(185, 70%, 45%);
+
+      --font-display: 'Fraunces', serif;
+      --font-body:    'Mulish', sans-serif;
+
+      --section-pad: 5rem 1.5rem;
+      --radius: 12px;
+    }
+
+    /* ================================
+       RESET
+       ================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ================================
+       SHARED UTILITIES
+       ================================ */
+    .section-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 8vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 42ch;
+      line-height: 1.75;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1.5rem 0;
+    }
+
+    /* Scroll-reveal: elements start hidden, JS adds .visible */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ================================
+       NAV (sticky)
+       ================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.5rem;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+
+    .nav.scrolled {
+      background: hsl(210, 22%, 7%, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav__links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav__links a { color: var(--text-muted); transition: color 0.2s; }
+    .nav__links a:hover { color: var(--text); }
+
+    .nav__cta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent) !important;
+    }
+
+    .nav__hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu drawer */
+    .nav__drawer {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav__drawer.open { opacity: 1; pointer-events: all; }
+    .nav__drawer a { color: var(--text); transition: color 0.2s; }
+    .nav__drawer a:hover { color: var(--accent); }
+
+    @media (min-width: 768px) {
+      .nav__links { display: flex; }
+      .nav__hamburger { display: none; }
+    }
+
+    /* ================================
+       HERO
+       ================================ */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      animation: kenburns 18s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--overlay-color);
+      opacity: var(--overlay-opacity);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(to top, var(--gradient-color), transparent);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero__eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 14vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      font-weight: 400;
+      display: block;
+    }
+
+    .hero__desc {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: hsl(0, 0%, 78%);
+      max-width: 38ch;
+      margin-bottom: 2rem;
+    }
+
+    .hero__note {
+      font-size: 0.72rem;
+      color: hsl(0, 0%, 60%);
+      margin-top: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+
+    .hero__scroll-line {
+      display: block;
+      width: 1.5px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--accent));
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
+    /* ================================
+       BUTTON
+       ================================ */
+    .btn {
+      display: inline-block;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.9em 2.25em;
+      border-radius: 100px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn:hover  { background: var(--btn-hover); }
+    .btn:active { transform: scale(0.97); }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn--ghost:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+
+    /* ================================
+       ABOUT
+       ================================ */
+    .about {
+      padding: var(--section-pad);
+      background: var(--bg);
+    }
+
+    .about__inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .about__body {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .about__stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .about__stat {
+      background: var(--bg-card);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .about__stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .about__stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      .about__body { flex-direction: row; align-items: flex-start; }
+      .about__text { flex: 1; }
+      .about__stat-grid { flex: 1; grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ================================
+       FEATURES / SERVICES
+       ================================ */
+    .features {
+      padding: var(--section-pad);
+      background: var(--bg-section);
+    }
+
+    .features__header {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      padding: 1.75rem 1.5rem;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .feature-card:hover { background: var(--bg-card-hover); }
+
+    .feature-card__icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-card__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .feature-card__desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (min-width: 540px) {
+      .features__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .features__grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* ================================
+       PRICING
+       ================================ */
+    .pricing {
+      padding: var(--section-pad);
+      background: var(--bg);
+    }
+
+    .pricing__header {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .pricing__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .pricing-card:hover { border-color: hsl(210, 14%, 30%); }
+
+    .pricing-card--featured {
+      background: var(--pricing-featured);
+      border-color: var(--pricing-border);
+    }
+
+    .pricing-card--featured:hover { border-color: var(--accent-light); }
+
+    .pricing-card__badge {
+      position: absolute;
+      top: -1px;
+      right: 1.25rem;
+      background: var(--accent);
+      color: var(--btn-text);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3em 0.8em;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .pricing-card__tier {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .pricing-card__price {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-card__price sup {
+      font-size: 1.2rem;
+      vertical-align: super;
+    }
+
+    .pricing-card__period {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-card__divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-card__features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .pricing-card__features li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .pricing-card__features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    .pricing-card__features li.off {
+      opacity: 0.4;
+    }
+
+    .pricing-card__features li.off::before {
+      content: '–';
+      color: var(--text-faint);
+    }
+
+    @media (min-width: 640px) {
+      .pricing__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .pricing__grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* ================================
+       CONTACT
+       ================================ */
+    .contact {
+      padding: var(--section-pad);
+      background: var(--bg-section);
+    }
+
+    .contact__inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .contact__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.8em 1em;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-faint); }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--input-focus);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .contact__submit {
+      width: 100%;
+      padding: 1em;
+      font-size: 0.9rem;
+      border-radius: 8px;
+    }
+
+    /* Form success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+    }
+
+    .form-success__icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+    .form-success p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ================================
+       FOOTER
+       ================================ */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    .footer__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .footer__top {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer__brand .footer__logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .footer__brand p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      max-width: 28ch;
+      line-height: 1.7;
+    }
+
+    .footer__links-group h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1rem;
+    }
+
+    .footer__links-group ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer__links-group a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .footer__links-group a:hover { color: var(--text); }
+
+    .footer__cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .footer__copy {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+    }
+
+    .footer__socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer__socials a {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer__socials a:hover { color: var(--accent); }
+
+    @media (min-width: 640px) {
+      .footer__top { flex-direction: row; justify-content: space-between; }
+      .footer__bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
+
+    /* ================================
+       ANIMATIONS
+       ================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @keyframes kenburns {
+      from { transform: scale(1.0) translate(0, 0); }
+      to   { transform: scale(1.08) translate(-1%, 1%); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================
+       NAV
+       ================================ -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav__logo">Everest</a>
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact" class="nav__cta">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="drawer">
+    <a href="#about"     onclick="closeDrawer()">About</a>
+    <a href="#features"  onclick="closeDrawer()">Services</a>
+    <a href="#pricing"   onclick="closeDrawer()">Pricing</a>
+    <a href="#contact"   onclick="closeDrawer()">Contact</a>
+  </div>
+
+  <!-- ================================
+       HERO
+       ================================ -->
+  <section class="hero" id="home">
+    <img
+      class="hero__bg"
+      src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+    />
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">August 12 – 20 · Nepal</p>
+      <h1 class="hero__title">Above the<br><em>Clouds.</em></h1>
+      <p class="hero__desc">Join our guided 8-day trek through the world's most breathtaking mountain trails. All skill levels welcome.</p>
+      <a href="#contact" class="btn">Reserve Your Spot</a>
+      <p class="hero__note">Only 12 spots remaining</p>
+    </div>
+
+    <div class="hero__scroll" id="scrollHint" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ================================
+       ABOUT
+       ================================ -->
+  <section class="about" id="about">
+    <div class="about__inner">
+      <div class="reveal">
+        <span class="section-label">Who we are</span>
+        <h2 class="section-title">Adventure<br><em>redefined.</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="about__body">
+        <div class="about__text reveal">
+          <p class="section-sub">We are a team of seasoned mountaineers and outdoor guides passionate about sharing the raw, unfiltered beauty of the Himalayas. Every expedition is carefully curated for safety, wonder, and transformation.</p>
+          <br>
+          <p class="section-sub">From your first step at base camp to the summit push, we handle every detail — so you can focus on the experience of a lifetime.</p>
+          <br>
+          <a href="#features" class="btn btn--ghost" style="font-size:0.82rem; padding: 0.75em 1.75em;">Our Services</a>
+        </div>
+        <div class="about__stat-grid reveal">
+          <div class="about__stat">
+            <div class="about__stat-num">12+</div>
+            <div class="about__stat-label">Years guiding</div>
+          </div>
+          <div class="about__stat">
+            <div class="about__stat-num">340</div>
+            <div class="about__stat-label">Expeditions</div>
+          </div>
+          <div class="about__stat">
+            <div class="about__stat-num">98%</div>
+            <div class="about__stat-label">Safety record</div>
+          </div>
+          <div class="about__stat">
+            <div class="about__stat-num">4.9★</div>
+            <div class="about__stat-label">Avg. rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FEATURES / SERVICES
+       ================================ -->
+  <section class="features" id="features">
+    <div class="features__header reveal">
+      <span class="section-label">What we offer</span>
+      <h2 class="section-title">Built for<br><em>every adventurer.</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">From day hikes to summit attempts, our services are designed to meet you wherever you are.</p>
+    </div>
+    <div class="features__grid">
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🏔️</div>
+        <h3 class="feature-card__title">Summit Expeditions</h3>
+        <p class="feature-card__desc">Full guided ascents with certified Sherpa support, O₂ equipment, and daily health monitoring.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🥾</div>
+        <h3 class="feature-card__title">Trek Packages</h3>
+        <p class="feature-card__desc">Multi-day trail packages through classic routes like Annapurna Circuit and Everest Base Camp.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🏕️</div>
+        <h3 class="feature-card__title">Camp & Lodging</h3>
+        <p class="feature-card__desc">Curated teahouse stays and luxury base camp setups with hot meals and proper rest facilities.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🎒</div>
+        <h3 class="feature-card__title">Gear Rental</h3>
+        <p class="feature-card__desc">Full kit available — crampons, down suits, sleeping bags, trekking poles. Travel light, gear up here.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🩺</div>
+        <h3 class="feature-card__title">Medical Support</h3>
+        <p class="feature-card__desc">On-trail medic, altitude sickness protocols, and satellite emergency communication on every trip.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">📸</div>
+        <h3 class="feature-card__title">Photo & Film</h3>
+        <p class="feature-card__desc">Add a dedicated photographer to your expedition. Come home with footage you'll keep forever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PRICING
+       ================================ -->
+  <section class="pricing" id="pricing">
+    <div class="pricing__header reveal">
+      <span class="section-label">Simple pricing</span>
+      <h2 class="section-title">Choose your<br><em>adventure.</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">All packages include permits, insurance, and 24/7 guide support. No hidden fees.</p>
+    </div>
+    <div class="pricing__grid">
+
+      <!-- Starter -->
+      <div class="pricing-card reveal">
+        <div class="pricing-card__tier">Base Camp</div>
+        <div class="pricing-card__price"><sup>$</sup>1,200</div>
+        <div class="pricing-card__period">per person · 4 days</div>
+        <div class="pricing-card__divider"></div>
+        <ul class="pricing-card__features">
+          <li>Guided day treks</li>
+          <li>Teahouse accommodation</li>
+          <li>Permits & insurance</li>
+          <li>Airport transfer</li>
+          <li class="off">Gear rental</li>
+          <li class="off">Photo package</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Get Started</a>
+      </div>
+
+      <!-- Featured -->
+      <div class="pricing-card pricing-card--featured reveal">
+        <div class="pricing-card__badge">Most Popular</div>
+        <div class="pricing-card__tier">Summit Trek</div>
+        <div class="pricing-card__price"><sup>$</sup>2,800</div>
+        <div class="pricing-card__period">per person · 8 days</div>
+        <div class="pricing-card__divider"></div>
+        <ul class="pricing-card__features">
+          <li>All Base Camp features</li>
+          <li>EBC summit attempt</li>
+          <li>Full gear rental kit</li>
+          <li>Sherpa 1-on-1 support</li>
+          <li>On-trail medical staff</li>
+          <li class="off">Photo package</li>
+        </ul>
+        <a href="#contact" class="btn">Book Now</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card reveal">
+        <div class="pricing-card__tier">Expedition Pro</div>
+        <div class="pricing-card__price"><sup>$</sup>5,500</div>
+        <div class="pricing-card__period">per person · 14 days</div>
+        <div class="pricing-card__divider"></div>
+        <ul class="pricing-card__features">
+          <li>All Summit Trek features</li>
+          <li>Lhotse / Ama Dablam route</li>
+          <li>Private base camp setup</li>
+          <li>Satellite comms device</li>
+          <li>Dedicated photographer</li>
+          <li>Post-trip video edit</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Get Started</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       CONTACT
+       ================================ -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <div class="reveal">
+        <span class="section-label">Get in touch</span>
+        <h2 class="section-title">Let's plan your<br><em>journey.</em></h2>
+        <div class="divider"></div>
+        <p class="section-sub">Fill out the form and our team will reach out within 24 hours.</p>
+      </div>
+
+      <form class="contact__form reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" placeholder="Alex" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" placeholder="Honnold" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="package">Interested in</label>
+          <select id="package">
+            <option value="">Select a package…</option>
+            <option>Base Camp – $1,200</option>
+            <option>Summit Trek – $2,800</option>
+            <option>Expedition Pro – $5,500</option>
+            <option>Custom / not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us about your experience level, travel dates, or any questions…"></textarea>
+        </div>
+        <button type="submit" class="btn contact__submit">Send Message</button>
+      </form>
+
+      <div class="form-success reveal" id="formSuccess">
+        <div class="form-success__icon">✅</div>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem;">Message sent!</h3>
+        <p>We'll be in touch within 24 hours. Get ready for the adventure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FOOTER
+       ================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="footer__logo">Everest</span>
+          <p>Guided expeditions to the top of the world. Est. 2012.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__links-group">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#about">About us</a></li>
+              <li><a href="#features">Services</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__links-group">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Refund Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 Everest Expeditions. All rights reserved.</p>
+        <div class="footer__socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================
+       JS
+       ================================ -->
+  <script>
+    // --- Nav scroll state ---
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+
+    // --- Scroll hint fade ---
+    const scrollHint = document.getElementById('scrollHint');
+    window.addEventListener('scroll', () => {
+      if (scrollHint) scrollHint.style.opacity = window.scrollY > 60 ? '0' : '1';
+    }, { passive: true });
+
+    // --- Mobile hamburger ---
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('drawer');
+
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // --- Scroll reveal ---
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer  = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          // Stagger siblings by their index within parent
+          const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(e.target);
+          e.target.style.transitionDelay = `${idx * 0.07}s`;
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // --- Contact form ---
+    const form    = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(f => {
+        f.style.borderColor = '';
+        if (!f.value.trim()) {
+          f.style.borderColor = 'hsl(0, 70%, 55%)';
+          valid = false;
+        }
+      });
+      if (!valid) return;
+
+      // Simulate async submit
+      const btn = form.querySelector('.contact__submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }, 900);
+    });
+  </script>
+</body>
+</html>
