@@ -170,7 +170,7 @@
     }
 
     .nav.scrolled {
-      background: hsl(210, 22%, 7%, 0.88);
+      background: var(--bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -182,6 +182,11 @@
       font-weight: 800;
       color: var(--unchanged-text);
       letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+
+    .nav__logo.scrolled {
+      color: var(--text);
     }
 
     .nav__right {
@@ -259,6 +264,10 @@
     .nav__links a { color: var(--unchanged-muted); transition: color 0.2s; }
     .nav__links a:hover { color: var(--accent); }
 
+    .nav__link.scrolled{
+      color: var(--text-muted);
+    }
+    
     .nav__cta {
       font-size: 0.78rem;
       font-weight: 700;
@@ -900,6 +909,6 @@
       transition: background 0.35s ease, color 0.35s ease;
     }
 
-    body.light .nav.scrolled {
+    body.light {
       background: hsl(210, 22%, 93%, 0.88);
     }

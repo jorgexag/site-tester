@@ -1,7 +1,14 @@
 // --- Nav scroll state ---
 const nav = document.getElementById('nav');
+const nav__logo = document.querySelector('.nav__logo');
+const nav__links = document.querySelectorAll('.nav__link');
+
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 30);
+  nav__logo.classList.toggle('scrolled', window.scrollY > 30);
+  nav__links.forEach(link => {
+    link.classList.toggle('scrolled', window.scrollY > 30);
+  });
 }, { passive: true });
 
 // --- Theme toggle ---
