@@ -1,11 +1,15 @@
 // --- Nav scroll state ---
 const nav = document.getElementById('nav');
 const nav__logo = document.querySelector('.nav__logo');
-const nav__links = document.querySelectorAll('.nav__link');
+const nav__links = document.querySelectorAll('.nav__links');
+const nav__theme = document.querySelector('.nav__theme-toggle');
+const nav__hamburger = document.querySelector('.nav__hamburger');
 
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 30);
   nav__logo.classList.toggle('scrolled', window.scrollY > 30);
+  nav__theme.classList.toggle('scrolled', window.scrollY > 30);
+  nav__hamburger.classList.toggle('scrolled', window.scrollY > 30);
   nav__links.forEach(link => {
     link.classList.toggle('scrolled', window.scrollY > 30);
   });

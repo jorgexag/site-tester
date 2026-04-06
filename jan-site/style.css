@@ -206,14 +206,25 @@
     .nav__ld {
       position: absolute;
       inset: 0;
-      color: var(--unchanged-muted);
+      /* color: var(--unchanged-text); */
       cursor: pointer;
       transition: color 0.2s, opacity 0.25s, transform 0.25s;
       user-select: none;
       line-height: 1;
     }
 
-    .nav__ld:hover { color: var(--accent); }
+    .nav__theme-toggle {
+      color:var(--unchanged-text);
+      transition: color 0.3s;
+    }
+
+    .nav__theme-toggle:hover {
+      color: var(--accent);
+    } 
+
+    .nav__theme-toggle.scrolled {
+      color: var(--text);
+    }
 
     /* Dark mode = default: show sun (switch TO light), hide moon */
     .nav__light { opacity: 1;  transform: scale(1);    pointer-events: auto;  }
@@ -259,13 +270,14 @@
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      transition: color 0.3s;
     }
 
-    .nav__links a { color: var(--unchanged-muted); transition: color 0.2s; }
-    .nav__links a:hover { color: var(--accent); }
+    .nav__links a { color: var(--unchanged-text); transition: color 0.2s; }
+    .nav__links a:hover, .nav__links.scrolled a:hover{ color: var(--accent); }
 
-    .nav__link.scrolled{
-      color: var(--text-muted);
+    .nav__links.scrolled a{
+      color: var(--text);
     }
     
     .nav__cta {
@@ -290,10 +302,12 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: var(--unchanged-text);
       border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
+      transition: transform 0.3s, opacity 0.3s, background 0.3s;
     }
+
+    .nav__hamburger.scrolled span { background: var(--text);}
 
     .nav__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav__hamburger.open span:nth-child(2) { opacity: 0; }
