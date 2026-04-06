@@ -183,48 +183,15 @@
         <span class="section-label" data-en="Get in touch" data-es="Contáctanos">Get in touch</span>
         <h2 class="section-title" data-en="Let's get your car<br><em>taken care of.</em>" data-es="Déjanos cuidar<br><em>tu carro.</em>">Let's get your car<br><em>taken care of.</em></h2>
         <div class="divider"></div>
-        <p class="section-sub" data-en="Fill out the form and we'll be reach out within 24 hours." data-es="Llena el formulario y te contactaremos dentro de 24 horas.">Fill out the form and we'll be reach out within 24 hours.</p>
+        <p class="section-sub" data-en="Call or text us for a quote." data-es="Llámanos o envíanos un mensaje para una cotización.">Call or text us for a quote.</p>
       </div>
 
-      <form class="contact__form reveal" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname" data-en="First name" data-es="Nombre">First name</label>
-            <input type="text" id="fname" placeholder="Alex" data-en-placeholder="Alex" data-es-placeholder="Alex" required />
-          </div>
-          <div class="form-group">
-            <label for="lname" data-en="Last name" data-es="Apellido">Last name</label>
-            <input type="text" id="lname" placeholder="Honnold" data-en-placeholder="Honnold" data-es-placeholder="Honnold" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="phone" data-en="Phone" data-es="Teléfono">Phone</label>
-          <input type="tel" id="phone" placeholder="+1 (555) 123-4567" data-en-placeholder="+1 (555) 123-4567" data-es-placeholder="+1 (555) 123-4567" required />
-        </div>
-        <div class="form-group">
-          <label for="package" data-en="Interested in" data-es="Interesado en">Interested in</label>
-          <select id="package">
-            <option value="" data-en="Select a package…" data-es="Elige un paquete…">Select a package…</option>
-            <option data-en="Base Wash – $1,200" data-es="Lavado Básico – $1,200">Base Wash – $1,200</option>
-            <option data-en="Full Detail – $2,800" data-es="Detallado Completo – $2,800">Full Detail – $2,800</option>
-            <option data-en="Premium Detail – $5,500" data-es="Detallado Premium – $5,500">Premium Detail – $5,500</option>
-            <option data-en="Custom / not sure yet" data-es="Personalizado / no estoy seguro">Custom / not sure yet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message" data-en="Message" data-es="Mensaje">Message</label>
-          <textarea id="message" placeholder="Tell us about your vehicle, preferred date, or any questions…" data-en-placeholder="Tell us about your vehicle, preferred date, or any questions…" data-es-placeholder="Cuéntanos sobre tu vehículo, fecha preferida o cualquier pregunta…"></textarea>
-        </div>
-        <button type="submit" class="btn contact__submit" data-en="Copy Message" data-es="Copiar Mensaje">Copy Message</button>
-      </form>
-
-      <div class="form-success reveal" id="formSuccess">
-        <div class="form-success__icon">✅</div>
-        <h3 style="font-family: var(--font-display); font-size: 1.5rem;" data-en="Message copied!" data-es="¡Mensaje copiado!">Message copied!</h3>
-        <p data-en="Make sure to send the email and we'll be in touch within 24 hours." data-es="Asegúrate de enviar el correo y nos pondremos en contacto dentro de 24 horas.">Make sure to send the email and we'll be in touch within 24 hours.</p>
-      </div>
+      <button class="btn contact__phone-btn" id="phoneBtn" data-phone="+1234567890">
+        <span data-en="Text us" data-es="Envíanos un mensaje">Text us</span>
+      </button>
     </div>
   </section>
+
 
   <!-- ================================
        FOOTER
