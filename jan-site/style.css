@@ -30,12 +30,6 @@
       --input-bg:         hsl(210, 16%, 13%);
       --input-border:     hsl(210, 14%, 22%);
       --input-focus:      hsl(47, 100%, 45%);
-
-      /* --font-display: 'Fraunces', serif;
-      --font-body:    'Mulish', sans-serif; */
-
-      /* --font-display: "Cinzel", serif;
-      --font-body:    "Nunito", sans-serif; */
       
       --font-display: "Forum", serif;
       --font-body:    "Montserrat", sans-serif;
@@ -144,6 +138,25 @@
       color: var(--text);
       letter-spacing: -0.02em;
     }
+
+    .nav__right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+    }
+
+    .nav__ld  { 
+      color: var(--text-muted);
+      transition: color 0.2s;
+      /* justify-self: flex-end; */
+    }
+    
+    .nav__ld:hover {color: var(--text);}
+
+    .nav__dark {
+      display: hidden;
+    }
+
 
     .nav__links {
       display: none;
