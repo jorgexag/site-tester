@@ -14,7 +14,9 @@
       --accent-dim:       hsl(47, 100%, 18%);
 
       --text:             hsl(0, 0%, 96%);
+      --unchanged-text:        hsl(0, 0%, 96%);
       --text-muted:       hsl(210, 10%, 60%);
+      --unchanged-muted:       hsl(210, 10%, 60%);
       --text-faint:       hsl(210, 10%, 40%);
 
       --overlay-color:    hsl(210, 30%, 6%);
@@ -36,35 +38,35 @@
        Light mode options
        ================================ */
 
-      --light-bg:               hsl(210, 22%, 93%);
-      --light-bg-section:       hsl(210, 18%, 90%);
-      --light-bg-card:          hsl(210, 16%, 87%);
-      --light-bg-card-hover:    hsl(210, 16%, 84%);
-      --light-border:           hsl(210, 14%, 80%);
+      /* Light Mode */
+      --light-bg:               hsl(0, 0%, 98%);
+      --light-bg-section:       hsl(0, 0%, 95%);
+      --light-bg-card:          hsl(0, 0%, 100%);
+      --light-bg-card-hover:    hsl(210, 20%, 96%);
+      --light-border:           hsl(210, 15%, 85%);
 
-      --light-accent:           hsl(47, 100%, 55%);
-      --light-accent-light:     hsl(47, 100%, 35%);
-      --light-accent-dim:       hsl(47, 100%, 82%);
+      --light-accent:           hsl(47, 100%, 45%);
+      --light-accent-light:     hsl(47, 100%, 55%);
+      --light-accent-dim:       hsl(47, 80%, 92%);
 
-      --light-text:             hsl(0, 0%, 4%);
-      --light-text-muted:       hsl(210, 10%, 40%);
-      --light-text-faint:       hsl(210, 10%, 60%);
+      --light-text:             hsl(210, 15%, 15%);
+      --light-text-muted:       hsl(210, 10%, 45%);
+      --light-text-faint:       hsl(210, 8%, 65%);
 
-      --light-overlay-color:    hsl(210, 30%, 94%);
-      --light-overlay-opacity:  0.55;
-      --light-gradient-color:   hsl(210, 30%, 95%);
+      --light-overlay-color:    hsl(210, 20%, 20%);
+      --light-overlay-opacity:  0.65;
+      --light-gradient-color:   hsl(210, 25%, 25%);
 
-      --light-btn-bg:           hsl(47, 100%, 55%);
-      --light-btn-text:         hsl(210, 30%, 94%);
-      --light-btn-hover:        hsl(47, 100%, 35%);
+      --light-btn-bg:           hsl(47, 100%, 45%);
+      --light-btn-text:         hsl(210, 20%, 10%);
+      --light-btn-hover:        hsl(47, 100%, 40%);
 
-      --light-pricing-featured: hsl(47, 100%, 88%);
-      --light-pricing-border:   hsl(47, 100%, 65%);
+      --light-pricing-featured: hsl(47, 80%, 92%);
+      --light-pricing-border:   hsl(47, 100%, 60%);
 
-      --light-input-bg:         hsl(210, 16%, 87%);
-      --light-input-border:     hsl(210, 14%, 78%);
-      --light-input-focus:      hsl(47, 100%, 55%);
-
+      --light-input-bg:         hsl(0, 0%, 100%);
+      --light-input-border:     hsl(210, 15%, 85%);
+      --light-input-focus:      hsl(47, 100%, 45%);
 
       --font-display: "Forum", serif;
       --font-body:    "Montserrat", sans-serif;
@@ -127,11 +129,19 @@
       line-height: 1.75;
     }
 
+    .contact-sub {
+      display: inline-block
+    }
+
     .divider {
       width: 40px;
       height: 2px;
       background: var(--accent);
       margin: 1.5rem 0;
+    }
+
+    .contact-divider {
+      width: 100%;
     }
 
     /* Scroll-reveal: elements start hidden, JS adds .visible */
@@ -170,7 +180,7 @@
       font-family: var(--font-display);
       font-size: 1.25rem;
       font-weight: 800;
-      color: var(--text);
+      color: var(--unchanged-text);
       letter-spacing: -0.02em;
     }
 
@@ -191,14 +201,14 @@
     .nav__ld {
       position: absolute;
       inset: 0;
-      color: var(--text-muted);
+      color: var(--unchanged-muted);
       cursor: pointer;
       transition: color 0.2s, opacity 0.25s, transform 0.25s;
       user-select: none;
       line-height: 1;
     }
 
-    .nav__ld:hover { color: var(--text); }
+    .nav__ld:hover { color: var(--accent); }
 
     /* Dark mode = default: show sun (switch TO light), hide moon */
     .nav__light { opacity: 1;  transform: scale(1);    pointer-events: auto;  }
@@ -246,8 +256,8 @@
       text-transform: uppercase;
     }
 
-    .nav__links a { color: var(--text-muted); transition: color 0.2s; }
-    .nav__links a:hover { color: var(--text); }
+    .nav__links a { color: var(--unchanged-muted); transition: color 0.2s; }
+    .nav__links a:hover { color: var(--accent); }
 
     .nav__cta {
       font-size: 0.78rem;
@@ -376,7 +386,7 @@
       font-weight: 800;
       line-height: 1.0;
       letter-spacing: -0.02em;
-      color: var(--text);
+      color: var(--unchanged-text);
       margin-bottom: 1.25rem;
     }
 
@@ -875,9 +885,9 @@
       --text:             var(--light-text);
       --text-muted:       var(--light-text-muted);
       --text-faint:       var(--light-text-faint);
-      --overlay-color:    var(--light-overlay-color);
+      /* --overlay-color:    var(--light-overlay-color);
       --overlay-opacity:  var(--light-overlay-opacity);
-      --gradient-color:   var(--light-gradient-color);
+      --gradient-color:   var(--light-gradient-color); */
       --btn-bg:           var(--light-btn-bg);
       --btn-text:         var(--light-btn-text);
       --btn-hover:        var(--light-btn-hover);
@@ -892,8 +902,4 @@
 
     body.light .nav.scrolled {
       background: hsl(210, 22%, 93%, 0.88);
-    }
-
-    body.light .hero__desc {
-      color: hsl(0, 0%, 30%);
     }
