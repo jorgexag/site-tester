@@ -1,8 +1,20 @@
-    // --- Nav scroll state ---
+ // --- Nav scroll state ---
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 30);
     }, { passive: true });
+
+    // --- Theme toggle ---
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Restore saved preference
+    if (localStorage.getItem('theme') === 'light') body.classList.add('light');
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light');
+      localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+    });
 
     // --- Scroll hint fade ---
     const scrollHint = document.getElementById('scrollHint');
@@ -72,3 +84,42 @@
         success.style.display = 'block';
       }, 900);
     });
+
+    // --- Language toggle ---
+const langToggle = document.getElementById('langToggle');
+
+function applyLanguage(lang) {
+  document.body.classList.toggle('es', lang === 'es');
+  document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+  localStorage.setItem('lang', lang);
+
+  // Swap text content for all [data-en] / [data-es] elements
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = lang === 'es' ? el.dataset.es : el.dataset.en;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+    // Handle innerHTML (for elements with <br><em> etc.)
+    if (text.includes('<')) el.innerHTML = text;
+    else el.textContent = text;
+  });
+
+  // Swap placeholders
+  document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.esPlaceholder : el.dataset.enPlaceholder;
+  });
+
+  // Swap <option> text inside selects
+  document.querySelectorAll('option[data-en]').forEach(opt => {
+    opt.textContent = lang === 'es' ? opt.dataset.es : opt.dataset.en;
+  });
+}
+
+// Auto-detect: check saved pref first, then browser language
+const savedLang = localStorage.getItem('lang');
+const browserLang = navigator.language || navigator.userLanguage || '';
+const defaultLang = savedLang || (browserLang.startsWith('es') ? 'es' : 'en');
+applyLanguage(defaultLang);
+
+langToggle.addEventListener('click', () => {
+  const current = document.body.classList.contains('es') ? 'es' : 'en';
+  applyLanguage(current === 'es' ? 'en' : 'es');
+});

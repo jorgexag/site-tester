@@ -2,6 +2,7 @@
        COLOR TOKENS — tweak here only
        ================================ */
     :root {
+      color-scheme: light dark;
       --bg:               hsl(210, 22%, 7%);
       --bg-section:       hsl(210, 18%, 10%);
       --bg-card:          hsl(210, 16%, 13%);
@@ -31,6 +32,40 @@
       --input-border:     hsl(210, 14%, 22%);
       --input-focus:      hsl(47, 100%, 45%);
       
+      /* ================================
+       Light mode options
+       ================================ */
+
+      --light-bg:               hsl(210, 22%, 93%);
+      --light-bg-section:       hsl(210, 18%, 90%);
+      --light-bg-card:          hsl(210, 16%, 87%);
+      --light-bg-card-hover:    hsl(210, 16%, 84%);
+      --light-border:           hsl(210, 14%, 80%);
+
+      --light-accent:           hsl(47, 100%, 55%);
+      --light-accent-light:     hsl(47, 100%, 35%);
+      --light-accent-dim:       hsl(47, 100%, 82%);
+
+      --light-text:             hsl(0, 0%, 4%);
+      --light-text-muted:       hsl(210, 10%, 40%);
+      --light-text-faint:       hsl(210, 10%, 60%);
+
+      --light-overlay-color:    hsl(210, 30%, 94%);
+      --light-overlay-opacity:  0.55;
+      --light-gradient-color:   hsl(210, 30%, 95%);
+
+      --light-btn-bg:           hsl(47, 100%, 55%);
+      --light-btn-text:         hsl(210, 30%, 94%);
+      --light-btn-hover:        hsl(47, 100%, 35%);
+
+      --light-pricing-featured: hsl(47, 100%, 88%);
+      --light-pricing-border:   hsl(47, 100%, 65%);
+
+      --light-input-bg:         hsl(210, 16%, 87%);
+      --light-input-border:     hsl(210, 14%, 78%);
+      --light-input-focus:      hsl(47, 100%, 55%);
+
+
       --font-display: "Forum", serif;
       --font-body:    "Montserrat", sans-serif;
 
@@ -145,17 +180,60 @@
       gap: 2rem;
     }
 
-    .nav__ld  { 
-      color: var(--text-muted);
-      transition: color 0.2s;
-      /* justify-self: flex-end; */
+    /* --- Theme toggle icons --- */
+    .nav__theme-toggle {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
     }
-    
-    .nav__ld:hover {color: var(--text);}
 
-    .nav__dark {
-      display: hidden;
+    .nav__ld {
+      position: absolute;
+      inset: 0;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s, opacity 0.25s, transform 0.25s;
+      user-select: none;
+      line-height: 1;
     }
+
+    .nav__ld:hover { color: var(--text); }
+
+    /* Dark mode = default: show sun (switch TO light), hide moon */
+    .nav__light { opacity: 1;  transform: scale(1);    pointer-events: auto;  }
+    .nav__dark  { opacity: 0;  transform: scale(0.6);  pointer-events: none;  }
+
+    /* Light mode active: show moon (switch TO dark), hide sun */
+    body.light .nav__light { opacity: 0; transform: scale(0.6); pointer-events: none; }
+    body.light .nav__dark  { opacity: 1; transform: scale(1);   pointer-events: auto; }
+
+    /* --- Language / flag toggle --- */
+    .nav__lang-toggle {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .nav__flag {
+      position: absolute;
+      inset: 0;
+      font-size: 1.35rem;
+      line-height: 24px;
+      text-align: center;
+      transition: opacity 0.25s, transform 0.25s;
+      user-select: none;
+    }
+
+    /* English default: show PR flag (tap = switch to Spanish), hide US flag */
+    .nav__flag--pr { opacity: 1; transform: scale(1);   pointer-events: auto; }
+    .nav__flag--us { opacity: 0; transform: scale(0.6); pointer-events: none; }
+
+    /* Spanish active: show US flag (tap = switch to English), hide PR flag */
+    body.es .nav__flag--pr { opacity: 0; transform: scale(0.6); pointer-events: none; }
+    body.es .nav__flag--us { opacity: 1; transform: scale(1);   pointer-events: auto; }
 
 
     .nav__links {
@@ -848,4 +926,42 @@
     @keyframes scrollPulse {
       0%, 100% { opacity: 0.3; }
       50%       { opacity: 1; }
+    }
+
+    /* ================================
+       LIGHT MODE OVERRIDES
+       ================================ */
+    body.light {
+      --bg:               var(--light-bg);
+      --bg-section:       var(--light-bg-section);
+      --bg-card:          var(--light-bg-card);
+      --bg-card-hover:    var(--light-bg-card-hover);
+      --border:           var(--light-border);
+      --accent:           var(--light-accent);
+      --accent-light:     var(--light-accent-light);
+      --accent-dim:       var(--light-accent-dim);
+      --text:             var(--light-text);
+      --text-muted:       var(--light-text-muted);
+      --text-faint:       var(--light-text-faint);
+      --overlay-color:    var(--light-overlay-color);
+      --overlay-opacity:  var(--light-overlay-opacity);
+      --gradient-color:   var(--light-gradient-color);
+      --btn-bg:           var(--light-btn-bg);
+      --btn-text:         var(--light-btn-text);
+      --btn-hover:        var(--light-btn-hover);
+      --pricing-featured: var(--light-pricing-featured);
+      --pricing-border:   var(--light-pricing-border);
+      --input-bg:         var(--light-input-bg);
+      --input-border:     var(--light-input-border);
+      --input-focus:      var(--light-input-focus);
+
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    body.light .nav.scrolled {
+      background: hsl(210, 22%, 93%, 0.88);
+    }
+
+    body.light .hero__desc {
+      color: hsl(0, 0%, 30%);
     }

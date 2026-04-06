@@ -19,16 +19,18 @@
   <nav class="nav" id="nav">
     <a href="#" class="nav__logo">J & K Mobile Detailing</a>
     <div class="nav__right">
-      <span class="material-symbols-outlined nav__light nav__ld">
-        sunny
-      </span>
-      <span class="material-symbols-outlined nav__dark nav__ld">
-        bedtime
-      </span>
+      <div class="nav__lang-toggle" id="langToggle" aria-label="Toggle language">
+        <span class="nav__flag nav__flag--pr" title="Cambiar a español">🇵🇷</span>
+        <span class="nav__flag nav__flag--us" title="Switch to English">🇺🇸</span>
+      </div>
+      <div class="nav__theme-toggle" id="themeToggle" aria-label="Toggle colour scheme">
+        <span class="material-symbols-outlined nav__ld nav__light" id="nav__light">sunny</span>
+        <span class="material-symbols-outlined nav__ld nav__dark"  id="nav__dark">bedtime</span>
+      </div>
       <ul class="nav__links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact" class="nav__cta">Contact</a></li>
+        <li><a href="#about"   data-en="About"   data-es="Nosotros">About</a></li>
+        <li><a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a></li>
+        <li><a href="#contact" class="nav__cta" data-en="Contact" data-es="Contacto">Contact</a></li>
       </ul>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -38,10 +40,10 @@
 
   <!-- Mobile drawer -->
   <div class="nav__drawer" id="drawer">
-    <a href="#about"     onclick="closeDrawer()">About</a>
-    <a href="#features"  onclick="closeDrawer()">Services</a>
-    <a href="#pricing"   onclick="closeDrawer()">Pricing</a>
-    <a href="#contact"   onclick="closeDrawer()">Contact</a>
+    <a href="#about"    onclick="closeDrawer()" data-en="About"    data-es="Nosotros">About</a>
+    <a href="#features" onclick="closeDrawer()" data-en="Services" data-es="Servicios">Services</a>
+    <a href="#pricing"  onclick="closeDrawer()" data-en="Pricing"  data-es="Precios">Pricing</a>
+    <a href="#contact"  onclick="closeDrawer()" data-en="Contact"  data-es="Contacto">Contact</a>
   </div>
 
   <!-- ================================
@@ -58,11 +60,10 @@
     <div class="hero__overlay"></div>
 
     <div class="hero__content">
-      <p class="hero__eyebrow">Est. 2022</p>
+      <p class="hero__eyebrow" data-en="Est. 2022" data-es="Est. 2022">Est. 2022</p>
       <h1 class="hero__title">J & K<br><em>Detailing</em></h1>
-      <p class="hero__desc">Get a showroom-quality clean right in your neighborhood without the premium price tag.</p>
-      <a href="#contact" class="btn">Get an Estimate</a>
-      <!-- <p class="hero__note"></p> -->
+      <p class="hero__desc" data-en="Get a showroom-quality clean right in your neighborhood without the premium price tag." data-es="Obtén una limpieza de calidad showroom en tu vecindario sin el precio elevado.">Get a showroom-quality clean right in your neighborhood without the premium price tag.</p>
+      <a href="#contact" class="btn" data-en="Get an Estimate" data-es="Obtener Cotización">Get an Estimate</a>
     </div>
 
     <div class="hero__scroll" id="scrollHint" aria-hidden="true">
@@ -76,17 +77,17 @@
   <section class="about" id="about">
     <div class="about__inner">
       <div class="reveal">
-        <span class="section-label">Who we are</span>
+        <span class="section-label" data-en="Who we are" data-es="Quiénes somos">Who we are</span>
         <h2 class="section-title">J & K<br><em>Detailing</em></h2>
         <div class="divider"></div>
       </div>
       <div class="about__body">
         <div class="about__text reveal">
-          <p class="section-sub">We are a team of experienced detailing specialists and automotive enthusiasts passionate about revealing the true, showroom-ready beauty of your vehicle. Every service is carefully crafted for protection, precision, and a complete transformation.</p>
+          <p class="section-sub" data-en="We are a team of experienced detailing specialists and automotive enthusiasts passionate about revealing the true, showroom-ready beauty of your vehicle. Every service is carefully crafted for protection, precision, and a complete transformation." data-es="Somos un equipo de especialistas en detallado con experiencia y entusiastas del automóvil, apasionados por revelar la verdadera belleza de tu vehículo. Cada servicio está diseñado con precisión para lograr una transformación completa.">We are a team of experienced detailing specialists and automotive enthusiasts passionate about revealing the true, showroom-ready beauty of your vehicle. Every service is carefully crafted for protection, precision, and a complete transformation.</p>
           <br>
-          <p class="section-sub">From the initial wash to the final protective shine, we handle every detail — so you can focus on the satisfaction of driving a car that looks and feels brand new.</p>
+          <p class="section-sub" data-en="From the initial wash to the final protective shine, we handle every detail — so you can focus on the satisfaction of driving a car that looks and feels brand new." data-es="Desde el lavado inicial hasta el brillo protector final, nos encargamos de cada detalle — para que te enfoques en el placer de manejar un auto que luce y se siente como nuevo.">From the initial wash to the final protective shine, we handle every detail — so you can focus on the satisfaction of driving a car that looks and feels brand new.</p>
           <br>
-          <a href="#pricing" class="btn btn--ghost" style="font-size:0.82rem; padding: 0.75em 1.75em;">Our Packages</a>
+          <a href="#pricing" class="btn btn--ghost" style="font-size:0.82rem; padding: 0.75em 1.75em;" data-en="Our Packages" data-es="Nuestros Paquetes">Our Packages</a>
         </div>
         <div class="about__stat-grid reveal">
           <div class="about__stat">
@@ -107,111 +108,67 @@
   </section>
 
   <!-- ================================
-       FEATURES / SERVICES
-       ================================ -->
-  <!-- <section class="features" id="features">
-    <div class="features__header reveal">
-      <span class="section-label">What we offer</span>
-      <h2 class="section-title">Built for<br><em>every adventurer.</em></h2>
-      <div class="divider"></div>
-      <p class="section-sub">From day hikes to summit attempts, our services are designed to meet you wherever you are.</p>
-    </div>
-    <div class="features__grid">
-      <div class="feature-card reveal">
-        <div class="feature-card__icon">🏔️</div>
-        <h3 class="feature-card__title">Summit Expeditions</h3>
-        <p class="feature-card__desc">Full guided ascents with certified Sherpa support, O₂ equipment, and daily health monitoring.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon">🥾</div>
-        <h3 class="feature-card__title">Trek Packages</h3>
-        <p class="feature-card__desc">Multi-day trail packages through classic routes like Annapurna Circuit and Everest Base Camp.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon">🏕️</div>
-        <h3 class="feature-card__title">Camp & Lodging</h3>
-        <p class="feature-card__desc">Curated teahouse stays and luxury base camp setups with hot meals and proper rest facilities.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon">🎒</div>
-        <h3 class="feature-card__title">Gear Rental</h3>
-        <p class="feature-card__desc">Full kit available — crampons, down suits, sleeping bags, trekking poles. Travel light, gear up here.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon">🩺</div>
-        <h3 class="feature-card__title">Medical Support</h3>
-        <p class="feature-card__desc">On-trail medic, altitude sickness protocols, and satellite emergency communication on every trip.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-card__icon">📸</div>
-        <h3 class="feature-card__title">Photo & Film</h3>
-        <p class="feature-card__desc">Add a dedicated photographer to your expedition. Come home with footage you'll keep forever.</p>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- ================================
        PRICING
        ================================ -->
   <section class="pricing" id="pricing">
     <div class="pricing__header reveal">
-      <span class="section-label">Simple pricing</span>
-      <h2 class="section-title">Choose your<br><em>package.</em></h2>
+      <span class="section-label" data-en="Simple pricing" data-es="Precios claros">Simple pricing</span>
+      <h2 class="section-title" data-en="Choose your<br><em>package.</em>" data-es="Elige tu<br><em>paquete.</em>">Choose your<br><em>package.</em></h2>
       <div class="divider"></div>
-      <p class="section-sub">The options listed below are general estimates. Please reach out for an official estimate.</p>
+      <p class="section-sub" data-en="The options listed below are general estimates. Please reach out for an official estimate." data-es="Las opciones a continuación son estimados generales. Contáctanos para una cotización oficial.">The options listed below are general estimates. Please reach out for an official estimate.</p>
     </div>
     <div class="pricing__grid">
 
       <!-- Starter -->
       <div class="pricing-card reveal">
-        <div class="pricing-card__tier">Base Camp</div>
+        <div class="pricing-card__tier" data-en="Base Wash" data-es="Lavado Básico">Base Wash</div>
         <div class="pricing-card__price"><sup>$</sup>1,200</div>
-        <div class="pricing-card__period">per person · 4 days</div>
+        <div class="pricing-card__period" data-en="Starting price" data-es="Precio desde">Starting price</div>
         <div class="pricing-card__divider"></div>
         <ul class="pricing-card__features">
-          <li>Guided day treks</li>
-          <li>Teahouse accommodation</li>
-          <li>Permits & insurance</li>
-          <li>Airport transfer</li>
-          <li class="off">Gear rental</li>
-          <li class="off">Photo package</li>
+          <li data-en="Exterior hand wash" data-es="Lavado exterior a mano">Exterior hand wash</li>
+          <li data-en="Wheel & tire clean" data-es="Limpieza de ruedas y gomas">Wheel & tire clean</li>
+          <li data-en="Window cleaning" data-es="Limpieza de cristales">Window cleaning</li>
+          <li data-en="Interior vacuum" data-es="Aspirado interior">Interior vacuum</li>
+          <li class="off" data-en="Paint decontamination" data-es="Descontaminación de pintura">Paint decontamination</li>
+          <li class="off" data-en="Ceramic coating" data-es="Recubrimiento cerámico">Ceramic coating</li>
         </ul>
-        <a href="#contact" class="btn btn--ghost">Get Started</a>
+        <a href="#contact" class="btn btn--ghost" data-en="Get Started" data-es="Comenzar">Get Started</a>
       </div>
 
       <!-- Featured -->
       <div class="pricing-card pricing-card--featured reveal">
-        <div class="pricing-card__badge">Most Popular</div>
-        <div class="pricing-card__tier">Summit Trek</div>
+        <div class="pricing-card__badge" data-en="Most Popular" data-es="Más Popular">Most Popular</div>
+        <div class="pricing-card__tier" data-en="Full Detail" data-es="Detallado Completo">Full Detail</div>
         <div class="pricing-card__price"><sup>$</sup>2,800</div>
-        <div class="pricing-card__period">per person · 8 days</div>
+        <div class="pricing-card__period" data-en="Starting price" data-es="Precio desde">Starting price</div>
         <div class="pricing-card__divider"></div>
         <ul class="pricing-card__features">
-          <li>All Base Camp features</li>
-          <li>EBC summit attempt</li>
-          <li>Full gear rental kit</li>
-          <li>Sherpa 1-on-1 support</li>
-          <li>On-trail medical staff</li>
-          <li class="off">Photo package</li>
+          <li data-en="All Base Wash features" data-es="Todo lo del Lavado Básico">All Base Wash features</li>
+          <li data-en="Interior deep clean" data-es="Limpieza profunda interior">Interior deep clean</li>
+          <li data-en="Leather conditioning" data-es="Acondicionamiento de cuero">Leather conditioning</li>
+          <li data-en="Paint decontamination" data-es="Descontaminación de pintura">Paint decontamination</li>
+          <li data-en="Clay bar treatment" data-es="Tratamiento con clay bar">Clay bar treatment</li>
+          <li class="off" data-en="Ceramic coating" data-es="Recubrimiento cerámico">Ceramic coating</li>
         </ul>
-        <a href="#contact" class="btn">Book Now</a>
+        <a href="#contact" class="btn" data-en="Book Now" data-es="Reservar Ahora">Book Now</a>
       </div>
 
       <!-- Pro -->
       <div class="pricing-card reveal">
-        <div class="pricing-card__tier">Expedition Pro</div>
+        <div class="pricing-card__tier" data-en="Premium Detail" data-es="Detallado Premium">Premium Detail</div>
         <div class="pricing-card__price"><sup>$</sup>5,500</div>
-        <div class="pricing-card__period">per person · 14 days</div>
+        <div class="pricing-card__period" data-en="Starting price" data-es="Precio desde">Starting price</div>
         <div class="pricing-card__divider"></div>
         <ul class="pricing-card__features">
-          <li>All Summit Trek features</li>
-          <li>Lhotse / Ama Dablam route</li>
-          <li>Private base camp setup</li>
-          <li>Satellite comms device</li>
-          <li>Dedicated photographer</li>
-          <li>Post-trip video edit</li>
+          <li data-en="All Full Detail features" data-es="Todo lo del Detallado Completo">All Full Detail features</li>
+          <li data-en="Paint correction" data-es="Corrección de pintura">Paint correction</li>
+          <li data-en="Ceramic coating" data-es="Recubrimiento cerámico">Ceramic coating</li>
+          <li data-en="Engine bay cleaning" data-es="Limpieza del compartimento">Engine bay cleaning</li>
+          <li data-en="Headlight restoration" data-es="Restauración de faros">Headlight restoration</li>
+          <li data-en="Odor elimination" data-es="Eliminación de olores">Odor elimination</li>
         </ul>
-        <a href="#contact" class="btn btn--ghost">Get Started</a>
+        <a href="#contact" class="btn btn--ghost" data-en="Get Started" data-es="Comenzar">Get Started</a>
       </div>
 
     </div>
@@ -223,48 +180,48 @@
   <section class="contact" id="contact">
     <div class="contact__inner">
       <div class="reveal">
-        <span class="section-label">Get in touch</span>
-        <h2 class="section-title">Let's get your car<br><em>taken care of.</em></h2>
+        <span class="section-label" data-en="Get in touch" data-es="Contáctanos">Get in touch</span>
+        <h2 class="section-title" data-en="Let's get your car<br><em>taken care of.</em>" data-es="Déjanos cuidar<br><em>tu carro.</em>">Let's get your car<br><em>taken care of.</em></h2>
         <div class="divider"></div>
-        <p class="section-sub">Fill out the form and we'll be reach out within 24 hours.</p>
+        <p class="section-sub" data-en="Fill out the form and we'll be reach out within 24 hours." data-es="Llena el formulario y te contactaremos dentro de 24 horas.">Fill out the form and we'll be reach out within 24 hours.</p>
       </div>
 
       <form class="contact__form reveal" id="contactForm" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label for="fname">First name</label>
-            <input type="text" id="fname" placeholder="Alex" required />
+            <label for="fname" data-en="First name" data-es="Nombre">First name</label>
+            <input type="text" id="fname" placeholder="Alex" data-en-placeholder="Alex" data-es-placeholder="Alex" required />
           </div>
           <div class="form-group">
-            <label for="lname">Last name</label>
-            <input type="text" id="lname" placeholder="Honnold" required />
+            <label for="lname" data-en="Last name" data-es="Apellido">Last name</label>
+            <input type="text" id="lname" placeholder="Honnold" data-en-placeholder="Honnold" data-es-placeholder="Honnold" required />
           </div>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@example.com" required />
+          <label for="email" data-en="Email" data-es="Correo electrónico">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" data-en-placeholder="you@example.com" data-es-placeholder="tu@ejemplo.com" required />
         </div>
         <div class="form-group">
-          <label for="package">Interested in</label>
+          <label for="package" data-en="Interested in" data-es="Interesado en">Interested in</label>
           <select id="package">
-            <option value="">Select a package…</option>
-            <option>Base Camp – $1,200</option>
-            <option>Summit Trek – $2,800</option>
-            <option>Expedition Pro – $5,500</option>
-            <option>Custom / not sure yet</option>
+            <option value="" data-en="Select a package…" data-es="Elige un paquete…">Select a package…</option>
+            <option data-en="Base Wash – $1,200" data-es="Lavado Básico – $1,200">Base Wash – $1,200</option>
+            <option data-en="Full Detail – $2,800" data-es="Detallado Completo – $2,800">Full Detail – $2,800</option>
+            <option data-en="Premium Detail – $5,500" data-es="Detallado Premium – $5,500">Premium Detail – $5,500</option>
+            <option data-en="Custom / not sure yet" data-es="Personalizado / no estoy seguro">Custom / not sure yet</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell us about your experience level, travel dates, or any questions…"></textarea>
+          <label for="message" data-en="Message" data-es="Mensaje">Message</label>
+          <textarea id="message" placeholder="Tell us about your vehicle, preferred date, or any questions…" data-en-placeholder="Tell us about your vehicle, preferred date, or any questions…" data-es-placeholder="Cuéntanos sobre tu vehículo, fecha preferida o cualquier pregunta…"></textarea>
         </div>
-        <button type="submit" class="btn contact__submit">Send Message</button>
+        <button type="submit" class="btn contact__submit" data-en="Send Message" data-es="Enviar Mensaje">Send Message</button>
       </form>
 
       <div class="form-success reveal" id="formSuccess">
         <div class="form-success__icon">✅</div>
-        <h3 style="font-family: var(--font-display); font-size: 1.5rem;">Message sent!</h3>
-        <p>We'll be in touch within 24 hours. Get ready for the adventure.</p>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem;" data-en="Message sent!" data-es="¡Mensaje enviado!">Message sent!</h3>
+        <p data-en="We'll be in touch within 24 hours. Get ready for the adventure." data-es="Nos pondremos en contacto dentro de 24 horas.">We'll be in touch within 24 hours. Get ready for the adventure.</p>
       </div>
     </div>
   </section>
@@ -277,26 +234,17 @@
       <div class="footer__top">
         <div class="footer__brand">
           <span class="footer__logo">J & K Mobile Detailing</span>
-          <p>Excellent service. Excellent prices. Est. 2022.</p>
+          <p data-en="Excellent service. Excellent prices. Est. 2022." data-es="Excelente servicio. Excelentes precios. Est. 2022.">Excellent service. Excellent prices. Est. 2022.</p>
         </div>
         <div class="footer__cols">
           <div class="footer__links-group">
             <h4>Explore</h4>
             <ul>
-              <li><a href="#about">About us</a></li>
-              <!-- <li><a href="#features">Services</a></li> -->
-              <li><a href="#pricing">Pricing</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a data-en="About us" data-es="Quienes somos" href="#about">About us</a></li>
+              <li><a data-en="Pricing" data-es="Precios" href="#pricing">Pricing</a></li>
+              <li><a data-en="Contact" data-es="Contacto" href="#contact">Contact</a></li>
             </ul>
           </div>
-          <!-- <div class="footer__links-group">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Refund Policy</a></li>
-            </ul>
-          </div> -->
         </div>
       </div>
 
@@ -304,8 +252,6 @@
         <p class="footer__copy">© 2026 J & K Mobile Detailing Expeditions. All rights reserved.</p>
         <div class="footer__socials">
           <a href="https://www.instagram.com/mdetailing749?igsh=dXpveGNpaGJ0d29r">Instagram</a>
-          <!-- <a href="#">Facebook</a>
-          <a href="#">YouTube</a> -->
         </div>
       </div>
     </div>
