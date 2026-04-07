@@ -54,13 +54,6 @@ const anyHasScrolled = [
     nav__hamburger && nav__hamburger.classList.toggle('scrolled');
     nav__links.forEach(link => link && link.classList.toggle('scrolled'));
   }
-// nav__logo.classList.toggle('scrolled');
-// nav__theme.classList.toggle('scrolled');
-// nav__hamburger.classList.toggle('scrolled');
-// nav__links.forEach(link => {
-//   link.classList.toggle('scrolled');
-// });
-
 });
 
 function closeDrawer() {
