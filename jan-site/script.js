@@ -41,6 +41,26 @@ hamburger.addEventListener('click', () => {
 const open = drawer.classList.toggle('open');
 hamburger.classList.toggle('open', open);
 document.body.style.overflow = open ? 'hidden' : '';
+const anyHasScrolled = [
+    nav__logo,
+    nav__theme,
+    nav__hamburger,
+    ...nav__links
+  ].some(el => el && el.classList.contains('scrolled'));
+
+  if (!anyHasScrolled) {
+    nav__logo && nav__logo.classList.toggle('scrolled');
+    nav__theme && nav__theme.classList.toggle('scrolled');
+    nav__hamburger && nav__hamburger.classList.toggle('scrolled');
+    nav__links.forEach(link => link && link.classList.toggle('scrolled'));
+  }
+// nav__logo.classList.toggle('scrolled');
+// nav__theme.classList.toggle('scrolled');
+// nav__hamburger.classList.toggle('scrolled');
+// nav__links.forEach(link => {
+//   link.classList.toggle('scrolled');
+// });
+
 });
 
 function closeDrawer() {
