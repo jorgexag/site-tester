@@ -761,13 +761,83 @@
       text-align: center;
     }
 
-    .contact__phone-btn {
+    .contact__form {
       width: 100%;
-      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .contact__field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .contact__field label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contact__field input,
+    .contact__field select,
+    .contact__field textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.75em 1em;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .contact__field input:focus,
+    .contact__field select:focus,
+    .contact__field textarea:focus {
+      border-color: var(--input-focus);
+    }
+
+    .contact__field input::placeholder,
+    .contact__field textarea::placeholder {
+      color: var(--text-faint);
+    }
+
+    .contact__field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact__field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1em center;
+      padding-right: 2.5em;
+      cursor: pointer;
+    }
+
+    .contact__btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact__btns .btn {
+      flex: 1;
+      text-align: center;
       padding: 1em;
       font-size: 0.9rem;
-      border-radius: 8px;
-      margin-top: 2rem;
+      min-width: 120px;
     }
 
 

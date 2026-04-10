@@ -79,17 +79,29 @@ entries.forEach((e, i) => {
 
 revealEls.forEach(el => observer.observe(el));
 
-// --- Contact button ---
-const phoneBtn = document.getElementById('phoneBtn');
-
-if (phoneBtn) {
-phoneBtn.addEventListener('click', () => {
-const phone = phoneBtn.getAttribute('data-phone');
-if (phone) {
-// Open default messaging app with phone number
-window.location.href = `sms:${phone}`;
+// --- Contact buttons ---
+function getContactBody() {
+  const name     = document.getElementById('contactName').value.trim();
+  const pkg      = document.getElementById('contactPackage').value;
+  const comments = document.getElementById('contactComments').value.trim();
+  return `Name: ${name || '—'}\nPackage: ${pkg}\nComments: ${comments || '—'}`;
 }
-});
+
+const phoneBtn = document.getElementById('phoneBtn');
+if (phoneBtn) {
+  phoneBtn.addEventListener('click', () => {
+    const phone = phoneBtn.getAttribute('data-phone');
+    window.location.href = `sms:${phone}?body=${encodeURIComponent(getContactBody())}`;
+  });
+}
+
+const emailBtn = document.getElementById('emailBtn');
+if (emailBtn) {
+  emailBtn.addEventListener('click', () => {
+    const email   = emailBtn.getAttribute('data-email');
+    const subject = encodeURIComponent('Service Inquiry – J & K Mobile Detailing');
+    window.location.href = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(getContactBody())}`;
+  });
 }
 
 // --- Language toggle ---

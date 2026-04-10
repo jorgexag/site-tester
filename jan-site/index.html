@@ -203,9 +203,38 @@
         <p class="section-sub contact-sub" data-en="Call or text us for a quote." data-es="Llámanos o envíanos un mensaje para una cotización.">Call or text us for a quote.</p>
       </div>
 
-      <button class="btn contact__phone-btn" id="phoneBtn" data-phone="+14077245945">
-        <span data-en="Text us" data-es="Envíanos un mensaje">Text us</span>
-      </button>
+      <form class="contact__form" id="contactForm" novalidate>
+        <div class="contact__field">
+          <label for="contactName" data-en="Name" data-es="Nombre">Name</label>
+          <input type="text" id="contactName"
+                 data-en-placeholder="Your name" data-es-placeholder="Tu nombre"
+                 placeholder="Your name">
+        </div>
+        <div class="contact__field">
+          <label for="contactPackage" data-en="Package" data-es="Paquete">Package</label>
+          <select id="contactPackage">
+            <option value="Base Wash"      data-en="Base Wash"      data-es="Lavado Básico">Base Wash</option>
+            <option value="Full Detail"    data-en="Full Detail"    data-es="Detallado Completo">Full Detail</option>
+            <option value="Premium Detail" data-en="Premium Detail" data-es="Detallado Premium">Premium Detail</option>
+          </select>
+        </div>
+        <div class="contact__field">
+          <label for="contactComments" data-en="Comments" data-es="Comentarios">Comments</label>
+          <textarea id="contactComments" rows="4"
+                    data-en-placeholder="Anything else you'd like us to know?"
+                    data-es-placeholder="¿Algo más que quieras que sepamos?"
+                    placeholder="Anything else you'd like us to know?"></textarea>
+        </div>
+      </form>
+
+      <div class="contact__btns">
+        <button class="btn contact__phone-btn" id="phoneBtn" data-phone="+14077245945">
+          <span data-en="Text us" data-es="Envíanos un mensaje">Text us</span>
+        </button>
+        <button class="btn btn--ghost contact__email-btn" id="emailBtn" data-email="jan@example.com">
+          <span data-en="Email us" data-es="Escríbenos">Email us</span>
+        </button>
+      </div>
     </div>
   </section>
 
