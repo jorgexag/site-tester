@@ -38,21 +38,21 @@ const hamburger = document.getElementById('hamburger');
 const drawer    = document.getElementById('drawer');
 
 hamburger.addEventListener('click', () => {
-const open = drawer.classList.toggle('open');
-hamburger.classList.toggle('open', open);
-document.body.style.overflow = open ? 'hidden' : '';
-const anyHasScrolled = [
-    nav__logo,
-    nav__theme,
-    nav__hamburger,
-    ...nav__links
-  ].some(el => el && el.classList.contains('scrolled'));
+  const open = drawer.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
 
-  if (!anyHasScrolled) {
-    nav__logo && nav__logo.classList.toggle('scrolled');
-    nav__theme && nav__theme.classList.toggle('scrolled');
-    nav__hamburger && nav__hamburger.classList.toggle('scrolled');
-    nav__links.forEach(link => link && link.classList.toggle('scrolled'));
+  const isScrolled = window.scrollY > 30;
+  if (open && !isScrolled) {
+    nav__logo?.classList.add('scrolled');
+    nav__theme?.classList.add('scrolled');
+    nav__hamburger?.classList.add('scrolled');
+    nav__links.forEach(l => l?.classList.add('scrolled'));
+  } else if (!open && !isScrolled) {
+    nav__logo?.classList.remove('scrolled');
+    nav__theme?.classList.remove('scrolled');
+    nav__hamburger?.classList.remove('scrolled');
+    nav__links.forEach(l => l?.classList.remove('scrolled'));
   }
 });
 
